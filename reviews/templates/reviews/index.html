@@ -3,44 +3,46 @@
 
 {% block content %}
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">영화 제목</th>
-      <th scope="col">리뷰 제목</th>
-      <th scope="col">리뷰 내용</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for review in reviews %}
-    <tr>
-      <th scope="row">{{review.pk}}</th>
-      <td>{{review.movie_name}}</td>
-      <td><a href="{% url 'reviews-detail' review.pk %}">{{review.title}}</a></td>
-      <td>{{review.content}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-{% if request.user.is_authenticated %}
-<a class="float-end btn btn-dark" href="{% url 'reviews-create' %}">글쓰기</a>
-{% else %}
-<a class="float-end btn btn-dark m-1" data-bs-toggle="modal" data-bs-target="#exampleModal" href="">
-  Registration </a>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <p>로그인 필요</p>
-        <div class="float-end">
-          <a class="btn btn-dark" href="/accounts/login/?next=/reviews/create/">로그인</a>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">돌아가기</button>
+<div class="container my-5">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">영화 제목</th>
+        <th scope="col">리뷰 제목</th>
+        <th scope="col">리뷰 내용</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for review in reviews %}
+      <tr>
+        <th scope="row">{{review.pk}}</th>
+        <td>{{review.movie_name}}</td>
+        <td><a href="{% url 'reviews-detail' review.pk %}">{{review.title}}</a></td>
+        <td>{{review.content}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% if request.user.is_authenticated %}
+  <a class="float-end btn btn-dark" href="{% url 'reviews-create' %}">글쓰기</a>
+  {% else %}
+  <a class="float-end btn btn-dark m-1" data-bs-toggle="modal" data-bs-target="#exampleModal" href="">
+    글쓰기 </a>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p>로그인 필요</p>
+          <div class="float-end">
+            <a class="btn btn-dark" href="/accounts/login/?next=/reviews/create/">로그인</a>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">돌아가기</button>
+          </div>
         </div>
       </div>
     </div>
+    {% endif %}
   </div>
-  {% endif %}
 </div>
 
 {% endblock content %}
