@@ -2,12 +2,12 @@ from django.urls import path
 
 urlpatterns = [
     # account
-    path('accounts/', )
+    path('accounts/', ),
   
-
 
     # reviews
   
     
-    # 
+    # comments
+
 ]
