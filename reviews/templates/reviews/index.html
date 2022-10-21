@@ -23,6 +23,24 @@
     {% endfor %}
   </tbody>
 </table>
+{% if request.user.is_authenticated %}
+<a class="float-end btn btn-dark" href="{% url 'reviews-create' %}">글쓰기</a>
+{% else %}
+<a class="float-end btn btn-dark m-1" data-bs-toggle="modal" data-bs-target="#exampleModal" href="">
+  Registration </a>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>로그인 필요</p>
+        <div class="float-end">
+          <a class="btn btn-dark" href="/accounts/login/?next=/reviews/create/">로그인</a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">돌아가기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
 
-<a href="{% url 'reviews-create' %}">글쓰기</a>
 {% endblock content %}

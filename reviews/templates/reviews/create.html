@@ -1,15 +1,18 @@
+{% extends '../base/base.html' %}
 {% load django_bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
 {% block content %}
-<form method="POST" class="form">
-  {% csrf_token %}
-  {% bootstrap_form review_form %}
-  
+<div class="container my-5">
+  <form method="POST" class="form">
+    {% csrf_token %}
+    {% bootstrap_form review_form %}
+
     <button type="submit" class="btn btn-primary">
       Submit
     </button>
- 
-</form>
+
+  </form>
+</div>
 {% endblock content %}
