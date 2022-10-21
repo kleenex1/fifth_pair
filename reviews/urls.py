@@ -27,3 +27,4 @@ urlpatterns = [
         name="comment-delete",
     ),
 ]
+
