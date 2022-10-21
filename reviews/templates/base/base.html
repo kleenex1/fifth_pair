@@ -73,39 +73,39 @@
       <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'reviews-create' %}">글쓰기</a>
     </div>
   </header>
-      <!-- Portfolio Grid-->
-      <section class="page-section bg-light" id="portfolio">
-        <div class="container">
-          <div class="text-center">
-            <h2 class="section-heading text-uppercase">최근 작성된 글</h2>
-            <h3 class="section-subheading text-muted">게시판 바로가기</h3>
-          </div>
-          <div class="row">
-            {% for review in reviews %}
-              <div class="col-lg-4 col-sm-6 mb-4">
-                <div class="portfolio-item">
-                  <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
-                    <div class="portfolio-hover">
-                      <div class="portfolio-hover-content">
-                        <i class="fas fa-plus fa-3x"></i>
-                      </div>
-                    </div>
-                    {% if review.image %}
-                      <img class="img-fluid" src="{% get_static_prefix %}{{review.image}}">{{review.image}}
-                    {% else %}
-                      <img class="img-fluid" src="{% static 'reviews/assets/img/noimg.png' %}" style="width:100%">
-                    {% endif %}
-                  </a>
-                  <div class="portfolio-caption">
-                    <div class="portfolio-caption-heading">{{review.title}}</div>
-                    <div class="portfolio-caption-subheading text-muted">{{review.content|slice:":20"}}</div>
-                  </div>
+  <!-- Portfolio Grid-->
+  <section class="page-section bg-light" id="portfolio">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-heading text-uppercase">최근 작성된 글</h2>
+        <h3 class="section-subheading text-muted">게시판 바로가기</h3>
+      </div>
+      <div class="row">
+        {% for review in reviews %}
+        <div class="col-lg-4 col-sm-6 mb-4">
+          <div class="portfolio-item">
+            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fas fa-plus fa-3x"></i>
                 </div>
               </div>
-            {% endfor %}
+              {% if review.image %}
+              <img class="img-fluid" src="{{ review.image.url }}">
+              {% else %}
+              <img class="img-fluid" src="{% static 'reviews/assets/img/noimg.png' %}" style="width:100%">
+              {% endif %}
+            </a>
+            <div class="portfolio-caption">
+              <div class="portfolio-caption-heading">{{review.title}}</div>
+              <div class="portfolio-caption-subheading text-muted">{{review.content|slice:":20"}}</div>
+            </div>
           </div>
         </div>
+        {% endfor %}
       </div>
+    </div>
+    </div>
     </div>
   </section>
 
@@ -152,27 +152,29 @@
           </div>
         </div>
 
-      </section>
-      <!-- Clients-->
-      <div class="py-5">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-12 col-sm-12 my-3">
-              <h2 class='text-center'>공식 후원사</h2>
-            </div>
-            <div class="col-md-12 col-sm-12 my-3">
-              <a href="https://www.hypergrowth.team/5a9ed44c-7610-4665-a34b-780ae79dd6d3"><img class="img-fluid img-brand d-block mx-auto" src="{% static 'reviews/assets/img/logos/hyper.svg' %}" style='height:10rem;'></a>
-            </div>
-          </div>
+  </section>
+  <!-- Clients-->
+  <div class="py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-12 col-sm-12 my-3">
+          <h2 class='text-center'>공식 후원사</h2>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-8 mx-auto text-center">
-          <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam
-            veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+        <div class="col-md-12 col-sm-12 my-3">
+          <a href="https://www.hypergrowth.team/5a9ed44c-7610-4665-a34b-780ae79dd6d3"><img
+              class="img-fluid img-brand d-block mx-auto" src="{% static 'reviews/assets/img/logos/hyper.svg' %}"
+              style='height:10rem;'></a>
         </div>
       </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8 mx-auto text-center">
+      <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam
+        veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+    </div>
+  </div>
+  </div>
   </section>
   <!-- Clients-->
   <div class="py-5">
@@ -203,17 +205,17 @@
             <i class="fab fa-linkedin-in"></i>
           </a>
         </div>
-      </footer>
-      <!-- Bootstrap core JS-->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-      <!-- Core theme JS-->
-      <script src="js/scripts.js"></script>
-      <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-      <!-- * * SB Forms JS * *-->
-      <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-      <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-      <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    {% endblock content %}
+  </footer>
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Core theme JS-->
+  <script src="js/scripts.js"></script>
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+  <!-- * * SB Forms JS * *-->
+  <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+  <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+  {% endblock content %}
 
   </div>
   <!-- JavaScript Bundle with Popper -->
