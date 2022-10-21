@@ -1,0 +1,13 @@
+{% extends '../base/base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% block content %}
+  <div class="container">
+    <h1 class="accounts_signup">비밀번호 수정</h1>
+    <form action="" method="POST">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <input class="btn btn-primary" type="submit" value="제출">
+    </form>
+  </div>
+{% endblock content %}

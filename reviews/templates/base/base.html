@@ -8,11 +8,11 @@
     <title>Document</title>
     {% load static %}
     {% load django_bootstrap5 %}
+    {% bootstrap_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'reviews/CSS/style.css' %}">
   </head>
 
   <body>
-    <h1>안녕하세요</h1>
     {% block content %}{% endblock content %}
   </body>
 
