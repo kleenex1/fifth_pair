@@ -5,9 +5,11 @@ from django.contrib.auth import login, logout, update_session_auth_hash
 from .models import User, Comment, Review
 from django.contrib.auth.decorators import login_required
 
+
 def index(request):
-    reviews = Review.objects.order_by('-pk')[:6]
-    return render(request, 'base/base.html', {"reviews":reviews})
+    reviews = Review.objects.order_by("-pk")[:6]
+    return render(request, "base/base.html", {"reviews": reviews})
+
 
 def accounts_signup(request):
     if request.method == "POST":
@@ -125,7 +127,7 @@ def reviews_create(request):
             return redirect("reviews-index")
     else:
         review_form = ReviewForm()
-    return render(request, "reviews/create.html", {"review_form": review_form})
+    return render(request, "reviews/forms.html", {"review_form": review_form})
 
 
 def reviews_detail(request, pk):
