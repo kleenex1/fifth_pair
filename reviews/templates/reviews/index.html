@@ -11,15 +11,19 @@
         <th scope="col">영화 제목</th>
         <th scope="col">리뷰 제목</th>
         <th scope="col">리뷰 내용</th>
+        <th scope="col">작성 날짜</th>
+        <th scope="col">수정 날짜</th>
       </tr>
     </thead>
     <tbody>
       {% for review in reviews %}
       <tr>
         <th scope="row">{{review.pk}}</th>
-        <td>{{review.movie_name}}</td>
-        <td><a href="{% url 'reviews-detail' review.pk %}">{{review.title}}</a></td>
-        <td>{{review.content}}</td>
+        <td>{{review.movie_name|slice:':20'}}</td>
+        <td><a href="{% url 'reviews-detail' review.pk %}">{{review.title|slice:':30'}}</a></td>
+        <td>{{review.content|slice:':150'}}</td>
+        <td>{{review.created_at|date:'m월 d일'}}</td>
+        <td>{{review.updated_at|date:'m월 d일'}}</td>
       </tr>
       {% endfor %}
     </tbody>

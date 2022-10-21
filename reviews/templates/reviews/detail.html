@@ -7,6 +7,9 @@
   <h5>{{ review.pk }}번 게시글</h5>
   <h2>{{ review.title}}</h2>
   <p>{{ review.created_at|date:"SHORT_DATETIME_FORMAT" }} | {{ review.updated_at|date:"y-m-d D" }}</p>
+  {% if review.image %}
+  <img src="{{ review.image.url }}" width="400" height="300">
+  {% endif %}
   <p>{{ review.content }} </p>
 
   <div class="my-3">
