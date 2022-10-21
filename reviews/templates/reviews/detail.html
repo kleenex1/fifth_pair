@@ -1,0 +1,23 @@
+{% extends '../base/base.html' %}
+
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="container">
+<h5>{{ review.pk }}번 게시글</h5>
+<h2>{{ review.title}}</h2>
+<p>{{ review.created_at|date:"SHORT_DATETIME_FORMAT" }} | {{ review.updated_at|date:"y-m-d D" }}</p>
+<p>{{ review.content }} </p>
+{% if review.image %}
+<img src="{{ review.image.url }}" alt="{{ review.image }}" width="400" height="300">
+{% endif %}
+<div>
+{% comment %} {% if review.author == user %} {% endcomment %}
+<a href="{% url 'reviews-update' review.pk %}">수정하기</a>
+<a href="{% url 'reviews-delete' review.pk %}">삭제하기</a>
+
+{% comment %} {% endif %} {% endcomment %}
+<a href="{% url 'reviews-index' %}">목록으로</a>
+</div>
+
+{% endblock content %}
