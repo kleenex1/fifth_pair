@@ -5,107 +5,106 @@
 
 <html lang="en">
 
-<head>
+  <head>
 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-  <title>Agency - Start Bootstrap Theme</title>
-  <!-- Favicon-->
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-  <!-- Font Awesome icons (free version)-->
-  <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-  <!-- Google fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-  <!-- Core theme CSS (includes Bootstrap)-->
-  <link href="{% static 'reviews\CSS\style.css' %}" rel="stylesheet" />
-</head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Agency - Start Bootstrap Theme</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{% static 'reviews\CSS\style.css' %}" rel="stylesheet"/>
+  </head>
 
+  <body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg bg-dark" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'reviews/assets/img/logos/logos.png' %}" alt="..."/></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars ms-1"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+            {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts-detail' request.user.pk %}">{{ request.user }}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'reviews-index' %}">리뷰목록</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts-logout' %}">로그아웃</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'reviews-index' %}">리뷰목록</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts-login' %}">로그인</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts-signup' %}">회원가입</a>
+              </li>
+            {% endif %}
+          </ul>
 
-<body id="page-top">
-  <!-- Navigation-->
-  <nav class="navbar navbar-expand-lg bg-dark" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'reviews/assets/img/navbar-logo.svg' %}"
-          alt="..." /></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars ms-1"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-          {% if request.user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts-detail' request.user.pk %}">{{ request.user }}</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'reviews-index' %}">리뷰목록</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts-logout' %}">로그아웃</a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'reviews-index' %}">리뷰목록</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts-login' %}">로그인</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts-signup' %}">회원가입</a>
-          </li>
-          {% endif %}
-        </ul>
-
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  {% block content %}
-  <!-- Masthead-->
-  <header class="masthead">
-    <div class="container">
-      <div class="masthead-subheading">Welcome To Our Studio!</div>
-      <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-      <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'reviews-create' %}">글쓰기</a>
-    </div>
-  </header>
-  <!-- Portfolio Grid-->
-  <section class="page-section bg-light" id="portfolio">
-    <div class="container">
-      <div class="text-center">
-        <h2 class="section-heading text-uppercase">최근 작성된 글</h2>
-        <h3 class="section-subheading text-muted">게시판 바로가기</h3>
-      </div>
-      <div class="row">
-        {% for review in reviews %}
-        <div class="col-lg-4 col-sm-6 mb-4">
-          <div class="portfolio-item">
-            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fas fa-plus fa-3x"></i>
+    {% block content %}
+      <!-- Masthead-->
+      <header class="masthead">
+        <div class="container">
+          <div class="masthead-subheading">Welcome To Our Studio!</div>
+          <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
+          <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'reviews-create' %}">글쓰기</a>
+        </div>
+      </header>
+      <!-- Portfolio Grid-->
+      <section class="page-section bg-light" id="portfolio">
+        <div class="container">
+          <div class="text-center">
+            <h2 class="section-heading text-uppercase">최근 작성된 글</h2>
+            <h3 class="section-subheading text-muted">게시판 바로가기</h3>
+          </div>
+          <div class="row">
+            {% for review in reviews %}
+              <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="portfolio-item">
+                  <a class="portfolio-link" href="{% url 'reviews-detail' review.pk %}">
+                    <div class="portfolio-hover">
+                      <div class="portfolio-hover-content">
+                        <i id="" class="fas fa-plus fa-3x"></i>
+                      </div>
+                    </div>
+                    <div style="height: 42vh;">
+                      {% if review.image %}
+                        <img class="img-fluid" src="{{ review.image.url }}" style="width:100%; height:100%;">
+                      {% else %}
+                        <img class=" img-fluid" src=" {% static 'reviews/assets/img/noimg.png' %} " style=" width:100%; height: 100%;">
+                      {% endif %}
+                    </div>
+                  </a>
+                  <div class=" portfolio-caption">
+                    <div class="portfolio-caption-heading">{{review.title}}</div>
+                    <div class="portfolio-caption-subheading text-muted">{{review.content|slice:":20"}}</div>
+                  </div>
                 </div>
               </div>
-              {% if review.image %}
-              <img class="img-fluid" src="{{ review.image.url }}">
-              {% else %}
-              <img class="img-fluid" src="{% static 'reviews/assets/img/noimg.png' %}" style="width:100%">
-              {% endif %}
-            </a>
-            <div class="portfolio-caption">
-              <div class="portfolio-caption-heading">{{review.title}}</div>
-              <div class="portfolio-caption-subheading text-muted">{{review.content|slice:":20"}}</div>
-            </div>
+            {% endfor %}
           </div>
         </div>
-        {% endfor %}
       </div>
-    </div>
-    </div>
     </div>
   </section>
 
@@ -119,11 +118,10 @@
       <div class="row">
         <div class="col-lg-4">
           <div class="team-member">
-            <img class="mx-auto rounded-circle" src="{% static 'reviews/assets/img/team/1.jpg' %}" alt="..." />
+            <img class="mx-auto rounded-circle" src="{% static 'reviews/assets/img/team/1.jpg' %}" alt="..."/>
             <h4>최근영</h4>
             <p class="text-muted">Lead Designer</p>
-            <a class="btn btn-dark btn-social mx-2" href="https://github.com/choikeunyoung"
-              aria-label="Parveen Anand Twitter Profile">
+            <a class="btn btn-dark btn-social mx-2" href="https://github.com/choikeunyoung" aria-label="Parveen Anand Twitter Profile">
               <i class="fab fa-github"></i>
             </a>
             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile">
@@ -136,11 +134,26 @@
         </div>
         <div class="col-lg-4">
           <div class="team-member">
-            <img class="mx-auto rounded-circle" src="{% static 'reviews/assets/img/team/2.jpg' %}" alt="..." />
+            <img class="mx-auto rounded-circle" src="{% static 'reviews/assets/img/team/2.jpg' %}" alt="..."/>
             <h4>이수영</h4>
             <p class="text-muted">Lead Marketer</p>
-            <a class="btn btn-dark btn-social mx-2" href="https://github.com/suyoung049"
-              aria-label="Diana Petersen Twitter Profile">
+            <a class="btn btn-dark btn-social mx-2" href="https://github.com/suyoung049" aria-label="Diana Petersen Twitter Profile">
+              <i class="fab fa-github"></i>
+            </a>
+            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Facebook Profile">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="{% static 'reviews/assets/img/team/3.jpg' %}" alt="..."/>
+            <h4>변규탁</h4>
+            <p class="text-muted">Lead Developer</p>
+            <a class="btn btn-dark btn-social mx-2" href="https://github.com/kleenex1" aria-label="Diana Petersen Twitter Profile">
               <i class="fab fa-github"></i>
             </a>
             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Facebook Profile">
@@ -152,42 +165,27 @@
           </div>
         </div>
 
-  </section>
-  <!-- Clients-->
-  <div class="py-5">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-12 col-sm-12 my-3">
-          <h2 class='text-center'>공식 후원사</h2>
+      </section>
+      <!-- Clients-->
+      <div class="py-5">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-12 col-sm-12 my-3">
+              <h2 class='text-center'>공식 후원사</h2>
+            </div>
+            <div class="col-md-12 col-sm-12 my-3">
+              <a href="https://www.hypergrowth.team/5a9ed44c-7610-4665-a34b-780ae79dd6d3"><img class="img-fluid img-brand d-block mx-auto" src="{% static 'reviews/assets/img/logos/hyper.svg' %}" style='height:10rem;'></a>
+            </div>
+          </div>
         </div>
-        <div class="col-md-12 col-sm-12 my-3">
-          <a href="https://www.hypergrowth.team/5a9ed44c-7610-4665-a34b-780ae79dd6d3"><img
-              class="img-fluid img-brand d-block mx-auto" src="{% static 'reviews/assets/img/logos/hyper.svg' %}"
-              style='height:10rem;'></a>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <p class="large text-muted">해피해피~</p>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-8 mx-auto text-center">
-      <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam
-        veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
-    </div>
-  </div>
-  </div>
   </section>
-  <!-- Clients-->
-  <div class="py-5">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-12 col-sm-12 my-3">
-          <a href="https://www.hypergrowth.team/5a9ed44c-7610-4665-a34b-780ae79dd6d3"><img
-              class="img-fluid img-brand d-block mx-auto" src="{% static 'reviews/assets/img/logos/hyper.svg' %}"
-              style='height:10rem;'></a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Footer-->
   <footer class="footer py-4 text-bg-dark">
@@ -205,23 +203,21 @@
             <i class="fab fa-linkedin-in"></i>
           </a>
         </div>
-  </footer>
-  <!-- Bootstrap core JS-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Core theme JS-->
-  <script src="js/scripts.js"></script>
-  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-  <!-- * * SB Forms JS * *-->
-  <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-  <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-  {% endblock content %}
+      </footer>
+      <!-- Bootstrap core JS-->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- Core theme JS-->
+      <script src="js/scripts.js"></script>
+      <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+      <!-- * * SB Forms JS * *-->
+      <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+      <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+      <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    {% endblock content %}
 
   </div>
   <!-- JavaScript Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
   <script src="{% static 'js/scripts.js' %}"></script>
 
 </body>
