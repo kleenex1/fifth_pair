@@ -5,6 +5,8 @@ from django.contrib.auth import login, logout, update_session_auth_hash
 from .models import User, Comment, Review
 from django.contrib.auth.decorators import login_required
 
+def index(request):
+    return render(request, 'base/index.html')
 
 def accounts_signup(request):
     if request.method == "POST":
