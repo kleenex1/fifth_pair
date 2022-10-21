@@ -6,7 +6,7 @@ from .models import User, Comment, Review
 from django.contrib.auth.decorators import login_required
 
 def index(request):
-    return render(request, 'base/index.html')
+    return render(request, 'base/base.html')
 
 def accounts_signup(request):
     if request.method == "POST":
