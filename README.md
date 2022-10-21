@@ -16,6 +16,7 @@
 
 
 
+![ezgif-4-2a2714c0da](https://user-images.githubusercontent.com/101690522/197162575-d33aa631-7b2f-4bab-bb4b-fb99002baa17.gif)
 
 ## 📢 프로젝트를 통해 배운 점 및 느낀점
 
