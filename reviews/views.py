@@ -3,6 +3,7 @@ from .forms import CustomUserCreationForm, CustomUserChangeForm, ReviewForm, Com
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import login, logout, update_session_auth_hash
 from .models import User, Comment, Review
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 
 
@@ -40,11 +41,8 @@ def accounts_login(request):
 
 
 def accounts_detail(request, pk):
-    form = User.objects.get(pk=pk)
-    context = {
-        "form": form,
-    }
-    return render(request, "accounts/detail.html", context)
+    user = get_user_model()
+  
 
 
 @login_required
