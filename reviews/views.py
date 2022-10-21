@@ -39,7 +39,15 @@ def accounts_login(request):
 
 
 def accounts_detail(request, pk):
-    user = get_user_model()
+    user = get_user_model().objects.get(pk=pk)
+    reviews = user.review_set.all()
+    comments = user.comment_set.all()
+    context = {
+        'user': user,
+        'reviews':reviews,
+        'comments':comments,
+    }
+    return render(request, 'accounts/detail.html', context)
   
 
 
