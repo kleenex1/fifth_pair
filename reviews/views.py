@@ -6,7 +6,8 @@ from .models import User, Comment, Review
 from django.contrib.auth.decorators import login_required
 
 def index(request):
-    return render(request, 'base/base.html')
+    reviews = Review.objects.order_by('-pk')[:6]
+    return render(request, 'base/base.html', {"reviews":reviews})
 
 def accounts_signup(request):
     if request.method == "POST":
