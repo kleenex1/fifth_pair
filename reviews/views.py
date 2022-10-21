@@ -148,10 +148,10 @@ def reviews_update(request, pk):
             review_form = ReviewForm(request.POST, request.FILES, instance=review)
             if review_form.is_valid():
                 review_form.save()
-                return redirect("review-detail", review.pk)
+                return redirect("reviews-detail", review.pk)
         else:
             review_form = ReviewForm(instance=review)
-        return render(request, "reviews/form.html", {"review_form": review_form})
+        return render(request, "reviews/forms.html", {"review_form": review_form})
     else:
         return redirect("review-detail", review.pk)
 

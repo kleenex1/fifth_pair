@@ -3,14 +3,11 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-<div class="container">
+<div class="container my-5">
   <h5>{{ review.pk }}번 게시글</h5>
   <h2>{{ review.title}}</h2>
   <p>{{ review.created_at|date:"SHORT_DATETIME_FORMAT" }} | {{ review.updated_at|date:"y-m-d D" }}</p>
   <p>{{ review.content }} </p>
-  {% if review.image %}
-  <img src="{{ review.image.url }}" alt="{{ review.image }}" width="400" height="300">
-  {% endif %}
 
   <div class="my-3">
     {% if request.user.is_authenticated %}
@@ -33,7 +30,7 @@
       {% if request.user == comment.user %}
       <form action="{% url 'comment-delete' review.pk comment.pk %}" method="POST">
         {% csrf_token %}
-        <button class="float-end btn btn-dark m-1">댓글 삭제</button>
+        <button class="float-end btn btn-dark ">DEL</button>
       </form>
       {% else %}
 
@@ -41,7 +38,7 @@
 
       <div class="d-flex justify-content-between">
         <div>{{ comment.content }} | {{ comment.created_at }} </div>
-        <div> 작성자 <a class="title_link" href="{% url 'accounts-detail' comment.user.pk%}">
+        <div class="mx-4"> 작성자 <a class="title_link" href="{% url 'accounts-detail' comment.user.pk%}">
             {{ comment.user.username }}</a></div>
       </div>
 
