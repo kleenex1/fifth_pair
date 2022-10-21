@@ -1,5 +1,3 @@
-
-
 from django.db import migrations, models
 
 
@@ -13,6 +11,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='review',
             name='grade',
+
             field=models.IntegerField(choices=[(4, '★★★★'), (3, '★★★'), (1, '★'), (5, '★★★★★'), (2, '★★')], default=None),
 
         ),

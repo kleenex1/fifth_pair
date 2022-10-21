@@ -1,3 +1,5 @@
-h1 {
-    color:blue
+h1[class="accounts_signup"] {
+    text-align : center;
+    margin-top : 10%;
+    margin-bottom: 5%;
 }
