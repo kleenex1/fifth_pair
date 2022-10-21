@@ -14,13 +14,13 @@ class Review(models.Model):
     title = models.CharField(max_length=80)
     content = models.TextField()
     movie_name = models.CharField(max_length=50)
-    RATING = {
+    RATING = [
         (1,'★'),
         (2,'★★'),
         (3,'★★★'),
         (4,'★★★★'),
-        (5,'★★★★★')
-    }
+        (5,'★★★★★'),
+    ]
     grade = models.IntegerField(choices=RATING, default=None)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
